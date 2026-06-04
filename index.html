@@ -16,10 +16,10 @@
   --red:#991A1A;--red-l:#FEE8E8;
   --text:#1A0A10;--text-m:#6B3A50;--text-l:#B08090;
   --border:#EEC8D8;--bg:#FBF6F8;--white:#FFFFFF;
+  --ink-red:#CC0000;
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:28px 20px 60px}
 
-/* ── FORMULAIRE ── */
 .form-title{font-size:18px;font-weight:600;color:var(--rose-d);margin-bottom:6px;display:flex;align-items:center;gap:10px}
 .form-subtitle{font-size:12px;color:var(--text-l);margin-bottom:24px}
 .autofill-badge{display:inline-flex;align-items:center;gap:5px;background:var(--green-l);color:var(--green);font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;margin-bottom:16px}
@@ -53,172 +53,99 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-go{width:100%;max-width:460px;background:var(--rose);color:var(--white);border:none;border-radius:11px;padding:16px;font-size:16px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s}
 .btn-go:hover{opacity:.9}
 
-/* ── ÉCRAN IMPRESSION ── */
 #screen-print{display:none;min-height:100vh;background:var(--bg)}
 .print-topbar{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
 .print-topbar-left{font-size:14px;font-weight:500;color:var(--rose-d)}
 .print-topbar-right{display:flex;gap:10px}
 .btn-back{background:var(--white);color:var(--text-m);border:1.5px solid var(--border);border-radius:9px;padding:9px 16px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer}
 .btn-print{background:var(--rose);color:var(--white);border:none;border-radius:9px;padding:9px 20px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer}
-.print-hint{background:var(--rose-l);border:1px solid var(--rose-m);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--rose-d);margin:16px 24px;line-height:1.6}
+.print-hint{background:var(--rose-l);border:1px solid var(--rose-m);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--rose-d);margin:16px 24px;line-height:1.8}
 
-/* Aperçu écran — étiquettes les unes sous les autres */
 .etiq-grid{display:flex;flex-direction:column;align-items:flex-start;padding:20px 24px 40px;gap:8px}
 .etiq-sep{display:flex;align-items:center;gap:8px;color:var(--text-l);font-size:11px;margin:2px 0;width:100%}
 .sep-line{flex:1;height:.5px;background:var(--border)}
 
-/* ══════════════════════════════════════════════
-   ÉTIQUETTES — PAYSAGE, 29mm de haut
-   Largeur automatique selon le contenu
-   Brother QL-820NWBc + DK-22210
-══════════════════════════════════════════════ */
-
-/* ÉTIQUETTE CYCLE — paysage, toutes infos */
 .etiq-cycle{
-  height:29mm;
-  width:90mm;
-  min-width:90mm;
-  background:white;
-  border:.8px solid #ccc;
-  border-radius:2px;
-  font-family:'DM Sans',sans-serif;
-  display:flex;
-  align-items:stretch;
-  overflow:hidden;
-  flex-shrink:0;
+  height:29mm;width:90mm;min-width:90mm;background:white;
+  border:1px solid #222;border-radius:2px;
+  font-family:'DM Sans',sans-serif;display:flex;align-items:stretch;overflow:hidden;flex-shrink:0;
 }
 .ec-left{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:2mm 3mm 2mm 3mm;
-  border-right:.5px solid #eee;
-  min-width:18mm;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:2mm 3mm;border-right:1px solid #ddd;min-width:18mm;flex-shrink:0;
 }
-.ec-num{font-size:12pt;font-weight:700;color:var(--rose-d);line-height:1;letter-spacing:.3px}
-.ec-sublabel{font-size:5.5pt;color:var(--text-l);text-transform:uppercase;letter-spacing:.5px;margin-top:.5mm;margin-bottom:2mm}
-.ec-result{font-size:7pt;font-weight:700;padding:2px 6px;border-radius:3px;display:inline-block}
-.ec-result.ok{background:var(--green-l);color:var(--green)}
-.ec-result.nok{background:var(--red-l);color:var(--red)}
+.ec-num{font-size:12pt;font-weight:700;color:var(--ink-red);line-height:1;letter-spacing:.3px}
+.ec-sublabel{font-size:5.5pt;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-top:.5mm;margin-bottom:2mm}
+.ec-result{font-size:7pt;font-weight:700;padding:2px 6px;border-radius:3px;display:inline-block;border:1px solid #333}
+.ec-result.ok{background:#fff;color:#222;border-color:#222}
+.ec-result.nok{background:var(--ink-red);color:#fff;border-color:var(--ink-red)}
 .ec-middle{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:2mm 3mm;
-  gap:.6mm;
-  border-right:.5px solid #eee;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:2mm 3mm;gap:.6mm;border-right:1px solid #ddd;flex:1;min-width:0;
 }
 .ec-row{display:flex;gap:2mm;align-items:baseline;font-size:6.5pt;white-space:nowrap}
-.ec-k{color:var(--text-l);flex-shrink:0}
-.ec-v{font-weight:600;color:var(--text)}
+.ec-k{color:#666;flex-shrink:0}
+.ec-v{font-weight:600;color:#111}
 .ec-right{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:2mm 3mm;
-  gap:1.5mm;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:2mm 3mm;gap:1.5mm;flex-shrink:0;
 }
 .ec-tests{display:flex;flex-direction:column;gap:1mm}
-.ec-test{font-size:6pt;font-weight:600;padding:1px 5px;border-radius:2px;white-space:nowrap}
-.ec-test.ok{background:var(--green-l);color:var(--green)}
-.ec-test.nok{background:var(--red-l);color:var(--red)}
-.ec-test.na{background:#f5f2f4;color:var(--text-l)}
+.ec-test{font-size:6pt;font-weight:600;padding:1px 5px;border-radius:2px;white-space:nowrap;border:.5px solid #aaa}
+.ec-test.ok{background:#fff;color:#333;border-color:#666}
+.ec-test.nok{background:var(--ink-red);color:#fff;border-color:var(--ink-red)}
+.ec-test.na{background:#f0f0f0;color:#999;border-color:#ddd}
 
-/* ÉTIQUETTE LOT — paysage, QR à gauche, infos à droite */
 .etiq-lot{
-  height:29mm;
-  width:90mm;
-  min-width:90mm;
-  background:white;
-  border:.8px solid #ccc;
-  border-radius:2px;
-  font-family:'DM Sans',sans-serif;
-  display:flex;
-  align-items:stretch;
-  overflow:hidden;
-  flex-shrink:0;
+  height:29mm;width:90mm;min-width:90mm;background:white;
+  border:1px solid #222;border-radius:2px;
+  font-family:'DM Sans',sans-serif;display:flex;align-items:stretch;overflow:hidden;flex-shrink:0;
 }
 .el-qr-wrap{
-  flex-shrink:0;
-  width:25mm;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:2mm;
-  border-right:.5px solid #eee;
+  flex-shrink:0;width:25mm;display:flex;align-items:center;justify-content:center;
+  padding:2mm;border-right:1px solid #ddd;
 }
-.el-qr-wrap canvas,
-.el-qr-wrap img{
-  width:23mm !important;
-  height:23mm !important;
-  display:block;
-}
+.el-qr-wrap canvas,.el-qr-wrap img{width:23mm !important;height:23mm !important;display:block;}
 .el-info{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:2mm 3mm;
-  gap:1.2mm;
-  min-width:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:2mm 3mm;gap:1.2mm;min-width:0;flex:1;
 }
-.el-lot{font-size:6.5pt;font-weight:700;color:var(--rose-d);line-height:1;letter-spacing:.3px}
-.el-instr{font-size:10pt;font-weight:700;color:var(--text);line-height:1.2;white-space:nowrap}
-.el-line{font-size:6pt;color:var(--text-l);line-height:1.3;white-space:nowrap}
-.el-dlu{font-size:7pt;font-weight:700;padding:1.5px 5px;border-radius:2px;display:inline-block}
-.dlu-ok{background:var(--green-l);color:var(--green)}
-.dlu-warn{background:var(--amber-l);color:var(--amber)}
-.dlu-exp{background:var(--red-l);color:var(--red)}
+.el-lot{font-size:6.5pt;font-weight:700;color:var(--ink-red);line-height:1;letter-spacing:.3px}
+.el-instr{font-size:10pt;font-weight:700;color:#111;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.el-line{font-size:6pt;color:#555;line-height:1.3;white-space:nowrap}
+.el-dlu{font-size:7pt;font-weight:700;padding:1.5px 5px;border-radius:2px;display:inline-block;border:.5px solid #aaa}
+.dlu-ok{background:#fff;color:#222;border-color:#666}
+.dlu-warn{background:var(--ink-red);color:#fff;border-color:var(--ink-red)}
+.dlu-exp{background:#111;color:#fff;border-color:#111}
 
-/* ══════════════════════════════════════════════
-   IMPRESSION — Brother QL-820NWBc + DK-22210
-   Papier continu 29mm, paysage
-   Une étiquette par "page" (coupe auto ou manuelle)
-══════════════════════════════════════════════ */
 @media print{
-  @page{
-    size: 90mm 29mm;
-    margin: 0;
-  }
-
-  html,body{width:90mm;margin:0;padding:0;background:white}
-
+  @page{size:90mm 29mm landscape;margin:0;}
+  html,body{width:90mm;margin:0;padding:0;background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
   #screen-form,.print-topbar,.print-hint,.etiq-sep{display:none!important}
-  #screen-print{display:block!important}
-
-  .etiq-grid{width:90mm;margin:0;padding:0;display:block}
-
+  #screen-print{display:block!important;background:white}
+  .etiq-grid{width:90mm;margin:0;padding:0;display:block;gap:0;}
   .etiq-cycle,.etiq-lot{
-    display:block;
-    width:90mm !important;
-    height:29mm !important;
-    max-height:29mm !important;
-    margin:0 !important;
-    border:none !important;
-    border-radius:0 !important;
+    display:flex !important;
+    width:90mm !important;height:29mm !important;min-width:90mm !important;max-height:29mm !important;
+    margin:0 !important;padding:0 !important;border:none !important;border-radius:0 !important;
     overflow:hidden !important;
-    page-break-before:always;
-    break-before:page;
-    page-break-inside:avoid;
-    break-inside:avoid;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
+    page-break-before:always;break-before:page;
+    page-break-inside:avoid;break-inside:avoid;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
   }
-
-  .etiq-cycle:first-child,.etiq-lot:first-child{
-    page-break-before:avoid;
-    break-before:avoid;
-  }
-
-  .ec-result,.ec-test,.el-dlu{
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-  }
+  .etiq-cycle:first-child,.etiq-lot:first-child{page-break-before:avoid;break-before:avoid;}
+  .ec-left{border-right:1px solid #ccc}
+  .ec-middle{border-right:1px solid #ccc}
+  .el-qr-wrap{border-right:1px solid #ccc}
+  .ec-result.ok,.dlu-ok,.ec-test.ok{background:#fff !important;color:#111 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .ec-result.nok,.dlu-warn,.ec-test.nok{background:#CC0000 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .dlu-exp{background:#111 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .ec-num,.el-lot{color:#CC0000 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 }
 </style>
 </head>
 <body>
 
-<!-- FORMULAIRE -->
 <div id="screen-form" style="max-width:480px;margin:0 auto">
   <div class="form-title">🛡️ Étiquettes stérilisation</div>
   <div class="form-subtitle">Données pré-remplies depuis Notion, ou remplis manuellement.</div>
@@ -298,7 +225,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <button class="btn-go" onclick="generer()">Générer les étiquettes →</button>
 </div>
 
-<!-- IMPRESSION -->
 <div id="screen-print">
   <div class="print-topbar">
     <div class="print-topbar-left">🛡️ <span id="print-title">Étiquettes</span></div>
@@ -308,7 +234,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
   </div>
   <div class="print-hint">
-    <strong>Brother QL-820NWBc + DK-22210.</strong> Clique "Imprimer" → choisis la Brother → le format 29mm est détecté automatiquement. Pour PDF : choisis "Enregistrer en PDF". Coche <strong>"Imprimer l'arrière-plan"</strong> dans Safari.
+    <strong>Brother QL-810WC — impression depuis iPad :</strong><br>
+    1. Appuie sur <strong>Imprimer / PDF</strong> ci-dessus.<br>
+    2. Sélectionne la Brother QL dans la liste d'imprimantes.<br>
+    3. Coche <strong>« Imprimer l'arrière-plan »</strong> dans les options si disponible.<br>
+    <strong>Enregistrer en PDF :</strong> dans la fenêtre d'impression, fais un <strong>pincement vers l'extérieur</strong> sur l'aperçu — un bouton PDF apparaît.
   </div>
   <div class="etiq-grid" id="etiq-grid"></div>
 </div>
@@ -327,7 +257,6 @@ var CAT=['Set OC','Sonde paro','Fraises','Set paro','Spatule','Seringue',
     b.onclick=function(){addInstr(n);};
     wrap.appendChild(b);
   });
-
   var p=new URLSearchParams(window.location.search);
   var hasParams=false;
   if(p.get('num')){document.getElementById('f-num').value=p.get('num');hasParams=true;}
@@ -385,33 +314,27 @@ function getInstrs(){
   });
   return out;
 }
-
 function generer(){
-  var num    =document.getElementById('f-num').value.trim()||'?';
-  var date   =document.getElementById('f-date').value;
-  var prog   =document.getElementById('f-prog').value;
-  var dlu    =document.getElementById('f-dlu').value||'—';
-  var op     =document.getElementById('f-op').options[document.getElementById('f-op').selectedIndex].value;
-  var cond   =document.getElementById('f-cond').options[document.getElementById('f-cond').selectedIndex].text.split('—')[0].trim();
-  var prion  =document.getElementById('f-prion').value;
-  var helix  =document.getElementById('f-helix').value;
-  var vacuum =document.getElementById('f-vacuum').value;
-  var res    =document.getElementById('f-res').value;
-  var diff   =getDiff();
-  var instrs =getInstrs();
-
-  var dateStr  =fmtDate(date);
+  var num=document.getElementById('f-num').value.trim()||'?';
+  var date=document.getElementById('f-date').value;
+  var prog=document.getElementById('f-prog').value;
+  var dlu=document.getElementById('f-dlu').value||'—';
+  var op=document.getElementById('f-op').options[document.getElementById('f-op').selectedIndex].value;
+  var cond=document.getElementById('f-cond').options[document.getElementById('f-cond').selectedIndex].text.split('—')[0].trim();
+  var prion=document.getElementById('f-prion').value;
+  var helix=document.getElementById('f-helix').value;
+  var vacuum=document.getElementById('f-vacuum').value;
+  var res=document.getElementById('f-res').value;
+  var diff=getDiff();
+  var instrs=getInstrs();
+  var dateStr=fmtDate(date);
   var progShort=prog.split('(')[0].trim();
-  var dluClass =diff>30?'dlu-ok':diff>0?'dlu-warn':'dlu-exp';
-  var dluLabel =(diff>30?'✓ DLU ':diff>0?'⚠ DLU ':'✗ DLU ')+dlu;
-
+  var dluClass=diff>30?'dlu-ok':diff>0?'dlu-warn':'dlu-exp';
+  var dluLabel=(diff>30?'✓ DLU ':diff>0?'⚠ DLU ':'✗ DLU ')+dlu;
   var grid=document.getElementById('etiq-grid');
   grid.innerHTML='';
-
   function tc(v){return v==='ok'?'ok':v==='nok'?'nok':'na';}
   function tl(v,n){return v==='ok'?'✓ '+n:v==='nok'?'✗ '+n:'— '+n;}
-
-  /* ── ÉTIQUETTE CYCLE (paysage, pas de QR) ── */
   var ce=document.createElement('div');
   ce.className='etiq-cycle';
   ce.innerHTML=
@@ -436,16 +359,12 @@ function generer(){
       '</div>'+
     '</div>';
   grid.appendChild(ce);
-
-  /* Séparateur */
   if(instrs.length>0){
     var sep=document.createElement('div');
     sep.className='etiq-sep';
     sep.innerHTML='<div class="sep-line"></div><span>'+instrs.length+' sachet'+(instrs.length>1?'s':'')+'</span><div class="sep-line"></div>';
     grid.appendChild(sep);
   }
-
-  /* ── ÉTIQUETTES LOTS (paysage, QR gauche, infos droite) ── */
   instrs.forEach(function(instr,idx){
     var lotNum=num+'-'+String(instr.n).padStart(2,'0');
     var le=document.createElement('div');
@@ -461,14 +380,10 @@ function generer(){
       '</div>';
     grid.appendChild(le);
   });
-
-  document.getElementById('print-title').textContent=
-    num+(instrs.length>0?' — '+instrs.length+' sachet'+(instrs.length>1?'s':''):'');
+  document.getElementById('print-title').textContent=num+(instrs.length>0?' — '+instrs.length+' sachet'+(instrs.length>1?'s':''):'');
   document.getElementById('screen-form').style.display='none';
   document.getElementById('screen-print').style.display='block';
   window.scrollTo(0,0);
-
-  /* QR en séquence stricte — 1 par 1 */
   var _qi=0;
   function _qr(){
     if(_qi>=instrs.length) return;
@@ -480,7 +395,7 @@ function generer(){
         new QRCode(el,{
           text:num+'-'+String(instrs[i].n).padStart(2,'0')+' | '+instrs[i].nom,
           width:87,height:87,
-          colorDark:'#1A0A10',colorLight:'#FFFFFF',
+          colorDark:'#000000',colorLight:'#FFFFFF',
           correctLevel:QRCode.CorrectLevel.M
         });
       }catch(e){console.warn('QR '+i,e);}
@@ -489,7 +404,6 @@ function generer(){
   }
   setTimeout(_qr,500);
 }
-
 function retour(){
   document.getElementById('screen-form').style.display='block';
   document.getElementById('screen-print').style.display='none';
