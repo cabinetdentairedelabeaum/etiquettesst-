@@ -59,6 +59,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .print-topbar-right{display:flex;gap:10px}
 .btn-back{background:var(--white);color:var(--text-m);border:1.5px solid var(--border);border-radius:9px;padding:9px 16px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer}
 .btn-print{background:var(--rose);color:var(--white);border:none;border-radius:9px;padding:9px 20px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer}
+.btn-mode{background:var(--white);color:var(--text-m);border:1.5px solid var(--border);border-radius:9px;padding:9px 14px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer}
+.btn-mode.active{background:#FFF8DC;color:#7A5800;border-color:#D4A800}
 .print-hint{background:var(--rose-l);border:1px solid var(--rose-m);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--rose-d);margin:16px 24px;line-height:1.8}
 
 .etiq-grid{display:flex;flex-direction:column;align-items:flex-start;padding:20px 24px 40px;gap:8px}
@@ -67,80 +69,80 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 .etiq-cycle{
   height:29mm;width:90mm;min-width:90mm;background:white;
-  border:1px solid #222;border-radius:2px;
+  border:1.5px solid #111;border-radius:2px;
   font-family:'DM Sans',sans-serif;display:flex;align-items:stretch;overflow:hidden;flex-shrink:0;
 }
 .ec-left{
   display:flex;flex-direction:column;justify-content:center;
-  padding:2mm 3mm;border-right:1px solid #ddd;min-width:18mm;flex-shrink:0;
+  padding:2mm 3mm;border-right:1px solid #ccc;min-width:18mm;flex-shrink:0;
 }
-.ec-num{font-size:12pt;font-weight:700;color:var(--ink-red);line-height:1;letter-spacing:.3px}
-.ec-sublabel{font-size:5.5pt;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-top:.5mm;margin-bottom:2mm}
-.ec-result{font-size:7pt;font-weight:700;padding:2px 6px;border-radius:3px;display:inline-block;border:1px solid #333}
-.ec-result.ok{background:#fff;color:#222;border-color:#222}
-.ec-result.nok{background:var(--ink-red);color:#fff;border-color:var(--ink-red)}
+.ec-num{font-size:13pt;font-weight:800;color:var(--ink-red);line-height:1;letter-spacing:.3px}
+.ec-sublabel{font-size:5.5pt;font-weight:700;color:#444;text-transform:uppercase;letter-spacing:.5px;margin-top:.5mm;margin-bottom:2mm}
+.ec-result{font-size:7pt;font-weight:800;padding:2px 6px;border-radius:3px;display:inline-block}
+.ec-result.ok{color:#111;border:1.5px solid #111}
+.ec-result.nok{color:var(--ink-red);border:2px solid var(--ink-red)}
 .ec-middle{
   display:flex;flex-direction:column;justify-content:center;
-  padding:2mm 3mm;gap:.6mm;border-right:1px solid #ddd;flex:1;min-width:0;
+  padding:2mm 3mm;gap:.6mm;border-right:1px solid #ccc;flex:1;min-width:0;
 }
 .ec-row{display:flex;gap:2mm;align-items:baseline;font-size:6.5pt;white-space:nowrap}
-.ec-k{color:#666;flex-shrink:0}
-.ec-v{font-weight:600;color:#111}
+.ec-k{color:#444;font-weight:700;flex-shrink:0}
+.ec-v{font-weight:800;color:#000}
 .ec-right{
   display:flex;flex-direction:column;justify-content:center;
   padding:2mm 3mm;gap:1.5mm;flex-shrink:0;
 }
 .ec-tests{display:flex;flex-direction:column;gap:1mm}
-.ec-test{font-size:6pt;font-weight:600;padding:1px 5px;border-radius:2px;white-space:nowrap;border:.5px solid #aaa}
-.ec-test.ok{background:#fff;color:#333;border-color:#666}
-.ec-test.nok{background:var(--ink-red);color:#fff;border-color:var(--ink-red)}
-.ec-test.na{background:#f0f0f0;color:#999;border-color:#ddd}
+.ec-test{font-size:6pt;font-weight:800;padding:1px 5px;border-radius:2px;white-space:nowrap}
+.ec-test.ok{color:#111;border:1px solid #666}
+.ec-test.nok{color:var(--ink-red);border:1.5px solid var(--ink-red)}
+.ec-test.na{color:#999;border:1px dashed #bbb}
 
 .etiq-lot{
   height:29mm;width:90mm;min-width:90mm;background:white;
-  border:1px solid #222;border-radius:2px;
+  border:1.5px solid #111;border-radius:2px;
   font-family:'DM Sans',sans-serif;display:flex;align-items:stretch;overflow:hidden;flex-shrink:0;
 }
 .el-qr-wrap{
   flex-shrink:0;width:25mm;display:flex;align-items:center;justify-content:center;
-  padding:2mm;border-right:1px solid #ddd;
+  padding:2mm;border-right:1px solid #ccc;
 }
 .el-qr-wrap canvas,.el-qr-wrap img{width:23mm !important;height:23mm !important;display:block;}
 .el-info{
   display:flex;flex-direction:column;justify-content:center;
   padding:2mm 3mm;gap:1.2mm;min-width:0;flex:1;
 }
-.el-lot{font-size:6.5pt;font-weight:700;color:var(--ink-red);line-height:1;letter-spacing:.3px}
-.el-instr{font-size:10pt;font-weight:700;color:#111;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.el-line{font-size:6pt;color:#555;line-height:1.3;white-space:nowrap}
-.el-dlu{font-size:7pt;font-weight:700;padding:1.5px 5px;border-radius:2px;display:inline-block;border:.5px solid #aaa}
-.dlu-ok{background:#fff;color:#222;border-color:#666}
-.dlu-warn{background:var(--ink-red);color:#fff;border-color:var(--ink-red)}
-.dlu-exp{background:#111;color:#fff;border-color:#111}
+.el-lot{font-size:6.5pt;font-weight:800;color:var(--ink-red);line-height:1;letter-spacing:.3px}
+.el-instr{font-size:10pt;font-weight:800;color:#000;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.el-line{font-size:6.5pt;font-weight:700;color:#333;line-height:1.3;white-space:nowrap}
+.el-dlu{font-size:7pt;font-weight:800;padding:1.5px 5px;border-radius:2px;display:inline-block}
+.dlu-ok{color:#111;border:1px solid #666}
+.dlu-warn{color:var(--ink-red);border:2px solid var(--ink-red)}
+.dlu-exp{color:#000;border:2.5px solid #000}
 
 @media print{
-  @page{size:90mm 29mm landscape;margin:0;}
-  html,body{width:90mm;margin:0;padding:0;background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  @page{size:90mm 29mm;margin:0;}
+  html,body{width:90mm;margin:0;padding:0;background:white;}
   #screen-form,.print-topbar,.print-hint,.etiq-sep{display:none!important}
   #screen-print{display:block!important;background:white}
-  .etiq-grid{width:90mm;margin:0;padding:0;display:block;gap:0;}
+  .etiq-grid{width:90mm;margin:0;padding:0;display:block;}
   .etiq-cycle,.etiq-lot{
     display:flex !important;
     width:90mm !important;height:29mm !important;min-width:90mm !important;max-height:29mm !important;
-    margin:0 !important;padding:0 !important;border:none !important;border-radius:0 !important;
+    margin:0 !important;padding:0 !important;
+    border-left:none !important;border-right:none !important;border-radius:0 !important;
     overflow:hidden !important;
     page-break-before:always;break-before:page;
     page-break-inside:avoid;break-inside:avoid;
-    -webkit-print-color-adjust:exact;print-color-adjust:exact;
   }
   .etiq-cycle:first-child,.etiq-lot:first-child{page-break-before:avoid;break-before:avoid;}
-  .ec-left{border-right:1px solid #ccc}
-  .ec-middle{border-right:1px solid #ccc}
-  .el-qr-wrap{border-right:1px solid #ccc}
-  .ec-result.ok,.dlu-ok,.ec-test.ok{background:#fff !important;color:#111 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  .ec-result.nok,.dlu-warn,.ec-test.nok{background:#CC0000 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  .dlu-exp{background:#111 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  .ec-num,.el-lot{color:#CC0000 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+
+.mode-bande .etiq-cycle,
+.mode-bande .etiq-lot{
+  page-break-before:avoid !important;
+  break-before:avoid !important;
+  border-top:none !important;
 }
 </style>
 </head>
@@ -230,15 +232,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="print-topbar-left">🛡️ <span id="print-title">Étiquettes</span></div>
     <div class="print-topbar-right">
       <button class="btn-back" onclick="retour()">← Modifier</button>
-      <button class="btn-print" onclick="window.print()">🖨 Imprimer / PDF</button>
+      <button id="btn-mode" class="btn-mode" onclick="toggleMode()">✂ Découpe auto</button>
+      <button class="btn-print" onclick="window.print()">🖨 Imprimer</button>
     </div>
   </div>
   <div class="print-hint">
-    <strong>Brother QL-810WC — impression depuis iPad :</strong><br>
-    1. Appuie sur <strong>Imprimer / PDF</strong> ci-dessus.<br>
-    2. Sélectionne la Brother QL dans la liste d'imprimantes.<br>
-    3. Coche <strong>« Imprimer l'arrière-plan »</strong> dans les options si disponible.<br>
-    <strong>Enregistrer en PDF :</strong> dans la fenêtre d'impression, fais un <strong>pincement vers l'extérieur</strong> sur l'aperçu — un bouton PDF apparaît.
+    <strong>Brother QL-810WC — iPad :</strong> Ne pas sélectionner "Paysage" manuellement — la Brother QL gère ça seule via AirPrint.<br>
+    Si tu passes par <strong>Chrome</strong> : partage la page → Imprimer → sélectionne la Brother QL.<br>
+    <strong>Découpe :</strong> utilise le bouton <em>✂ Découpe auto / Bande continue</em> selon ton réglage d'imprimante.<br>
+    <strong>PDF sur iPad :</strong> dans la fenêtre d'impression Safari, fais un <strong>pincement vers l'extérieur</strong> sur l'aperçu.
   </div>
   <div class="etiq-grid" id="etiq-grid"></div>
 </div>
@@ -408,6 +410,20 @@ function retour(){
   document.getElementById('screen-form').style.display='block';
   document.getElementById('screen-print').style.display='none';
   window.scrollTo(0,0);
+}
+var _bandMode=false;
+function toggleMode(){
+  _bandMode=!_bandMode;
+  var btn=document.getElementById('btn-mode');
+  if(_bandMode){
+    document.body.classList.add('mode-bande');
+    btn.textContent='📄 Page par page';
+    btn.classList.add('active');
+  } else {
+    document.body.classList.remove('mode-bande');
+    btn.textContent='✂ Découpe auto';
+    btn.classList.remove('active');
+  }
 }
 </script>
 </body>
