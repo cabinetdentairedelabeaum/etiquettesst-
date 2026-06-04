@@ -19,7 +19,6 @@
   --ink-red:#CC0000;
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:28px 20px 60px}
-
 .form-title{font-size:18px;font-weight:600;color:var(--rose-d);margin-bottom:6px;display:flex;align-items:center;gap:10px}
 .form-subtitle{font-size:12px;color:var(--text-l);margin-bottom:24px}
 .autofill-badge{display:inline-flex;align-items:center;gap:5px;background:var(--green-l);color:var(--green);font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;margin-bottom:16px}
@@ -52,7 +51,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-add-instr:hover{background:var(--mauve-l)}
 .btn-go{width:100%;max-width:460px;background:var(--rose);color:var(--white);border:none;border-radius:11px;padding:16px;font-size:16px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s}
 .btn-go:hover{opacity:.9}
-
 #screen-print{display:none;min-height:100vh;background:var(--bg)}
 .print-topbar{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
 .print-topbar-left{font-size:14px;font-weight:500;color:var(--rose-d)}
@@ -62,56 +60,38 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-mode{background:var(--white);color:var(--text-m);border:1.5px solid var(--border);border-radius:9px;padding:9px 14px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer}
 .btn-mode.active{background:#FFF8DC;color:#7A5800;border-color:#D4A800}
 .print-hint{background:var(--rose-l);border:1px solid var(--rose-m);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--rose-d);margin:16px 24px;line-height:1.8}
-
 .etiq-grid{display:flex;flex-direction:column;align-items:flex-start;padding:20px 24px 40px;gap:8px}
 .etiq-sep{display:flex;align-items:center;gap:8px;color:var(--text-l);font-size:11px;margin:2px 0;width:100%}
 .sep-line{flex:1;height:.5px;background:var(--border)}
-
 .etiq-cycle{
   height:29mm;width:90mm;min-width:90mm;background:white;
   border:1.5px solid #111;border-radius:2px;
   font-family:'DM Sans',sans-serif;display:flex;align-items:stretch;overflow:hidden;flex-shrink:0;
 }
-.ec-left{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:2mm 3mm;border-right:1px solid #ccc;min-width:18mm;flex-shrink:0;
-}
+.ec-left{display:flex;flex-direction:column;justify-content:center;padding:2mm 3mm;border-right:1px solid #ccc;min-width:18mm;flex-shrink:0;}
 .ec-num{font-size:13pt;font-weight:800;color:var(--ink-red);line-height:1;letter-spacing:.3px}
 .ec-sublabel{font-size:5.5pt;font-weight:700;color:#444;text-transform:uppercase;letter-spacing:.5px;margin-top:.5mm;margin-bottom:2mm}
 .ec-result{font-size:7pt;font-weight:800;padding:2px 6px;border-radius:3px;display:inline-block}
 .ec-result.ok{color:#111;border:1.5px solid #111}
 .ec-result.nok{color:var(--ink-red);border:2px solid var(--ink-red)}
-.ec-middle{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:2mm 3mm;gap:.6mm;border-right:1px solid #ccc;flex:1;min-width:0;
-}
+.ec-middle{display:flex;flex-direction:column;justify-content:center;padding:2mm 3mm;gap:.6mm;border-right:1px solid #ccc;flex:1;min-width:0;}
 .ec-row{display:flex;gap:2mm;align-items:baseline;font-size:6.5pt;white-space:nowrap}
 .ec-k{color:#444;font-weight:700;flex-shrink:0}
 .ec-v{font-weight:800;color:#000}
-.ec-right{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:2mm 3mm;gap:1.5mm;flex-shrink:0;
-}
+.ec-right{display:flex;flex-direction:column;justify-content:center;padding:2mm 3mm;gap:1.5mm;flex-shrink:0;}
 .ec-tests{display:flex;flex-direction:column;gap:1mm}
 .ec-test{font-size:6pt;font-weight:800;padding:1px 5px;border-radius:2px;white-space:nowrap}
 .ec-test.ok{color:#111;border:1px solid #666}
 .ec-test.nok{color:var(--ink-red);border:1.5px solid var(--ink-red)}
 .ec-test.na{color:#999;border:1px dashed #bbb}
-
 .etiq-lot{
   height:29mm;width:90mm;min-width:90mm;background:white;
   border:1.5px solid #111;border-radius:2px;
   font-family:'DM Sans',sans-serif;display:flex;align-items:stretch;overflow:hidden;flex-shrink:0;
 }
-.el-qr-wrap{
-  flex-shrink:0;width:25mm;display:flex;align-items:center;justify-content:center;
-  padding:2mm;border-right:1px solid #ccc;
-}
+.el-qr-wrap{flex-shrink:0;width:25mm;display:flex;align-items:center;justify-content:center;padding:2mm;border-right:1px solid #ccc;}
 .el-qr-wrap canvas,.el-qr-wrap img{width:23mm !important;height:23mm !important;display:block;}
-.el-info{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:2mm 3mm;gap:1.2mm;min-width:0;flex:1;
-}
+.el-info{display:flex;flex-direction:column;justify-content:center;padding:2mm 3mm;gap:1.2mm;min-width:0;flex:1;}
 .el-lot{font-size:6.5pt;font-weight:800;color:var(--ink-red);line-height:1;letter-spacing:.3px}
 .el-instr{font-size:10pt;font-weight:800;color:#000;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .el-line{font-size:6.5pt;font-weight:700;color:#333;line-height:1.3;white-space:nowrap}
@@ -120,8 +100,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .dlu-warn{color:var(--ink-red);border:2px solid var(--ink-red)}
 .dlu-exp{color:#000;border:2.5px solid #000}
 
+/* Impression — bande continue par défaut (pas de pages blanches sur iPad) */
 @media print{
-  @page{size:90mm 29mm;margin:0;}
+  @page{ margin:0; }
   html,body{width:90mm;margin:0;padding:0;background:white;}
   #screen-form,.print-topbar,.print-hint,.etiq-sep{display:none!important}
   #screen-print{display:block!important;background:white}
@@ -130,19 +111,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     display:flex !important;
     width:90mm !important;height:29mm !important;min-width:90mm !important;max-height:29mm !important;
     margin:0 !important;padding:0 !important;
-    border-left:none !important;border-right:none !important;border-radius:0 !important;
+    border-left:none !important;border-right:none !important;border-top:none !important;border-radius:0 !important;
     overflow:hidden !important;
-    page-break-before:always;break-before:page;
     page-break-inside:avoid;break-inside:avoid;
   }
-  .etiq-cycle:first-child,.etiq-lot:first-child{page-break-before:avoid;break-before:avoid;}
 }
-
-.mode-bande .etiq-cycle,
-.mode-bande .etiq-lot{
-  page-break-before:avoid !important;
-  break-before:avoid !important;
-  border-top:none !important;
+/* Mode "page par page" : 1 étiquette = 1 page */
+body.mode-pages .etiq-cycle,body.mode-pages .etiq-lot{
+  page-break-before:always !important;break-before:page !important;
+}
+body.mode-pages .etiq-cycle:first-child,body.mode-pages .etiq-lot:first-child{
+  page-break-before:avoid !important;break-before:avoid !important;
 }
 </style>
 </head>
@@ -152,7 +131,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <div class="form-title">🛡️ Étiquettes stérilisation</div>
   <div class="form-subtitle">Données pré-remplies depuis Notion, ou remplis manuellement.</div>
   <div id="autofill-badge" style="display:none" class="autofill-badge">✓ Données pré-remplies depuis Notion</div>
-
   <div class="section-label">Cycle autoclave</div>
   <div class="field-row">
     <div class="field"><label>N° de cycle</label><input type="text" id="f-num" placeholder="0001"></div>
@@ -185,38 +163,29 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <option value="Dr E. Charpentier">Dr Eva Charpentier</option>
     </select>
   </div>
-
   <div class="section-label">Tests du jour</div>
   <div class="tests-grid">
     <div class="test-field"><label>Test Prion</label>
       <select id="f-prion" onchange="colorSel(this)">
-        <option value="ok">✓ Conforme</option>
-        <option value="nok">✗ Non conforme</option>
-        <option value="na" selected>— N/R</option>
+        <option value="ok">✓ Conforme</option><option value="nok">✗ Non conforme</option><option value="na" selected>— N/R</option>
       </select>
     </div>
     <div class="test-field"><label>Test Hélix</label>
       <select id="f-helix" onchange="colorSel(this)">
-        <option value="ok">✓ Conforme</option>
-        <option value="nok">✗ Non conforme</option>
-        <option value="na" selected>— N/R</option>
+        <option value="ok">✓ Conforme</option><option value="nok">✗ Non conforme</option><option value="na" selected>— N/R</option>
       </select>
     </div>
     <div class="test-field"><label>Test Vacuum</label>
       <select id="f-vacuum" onchange="colorSel(this)">
-        <option value="ok">✓ Conforme</option>
-        <option value="nok">✗ Non conforme</option>
-        <option value="na" selected>— N/R</option>
+        <option value="ok">✓ Conforme</option><option value="nok">✗ Non conforme</option><option value="na" selected>— N/R</option>
       </select>
     </div>
     <div class="test-field"><label>Résultat</label>
       <select id="f-res" onchange="colorSel(this)">
-        <option value="ok">✓ Conforme</option>
-        <option value="nok">✗ Défaut</option>
+        <option value="ok">✓ Conforme</option><option value="nok">✗ Défaut</option>
       </select>
     </div>
   </div>
-
   <div class="section-label">Instruments — 1 ligne = 1 sachet</div>
   <div class="quick-wrap">
     <div class="quick-title">Ajout rapide</div>
@@ -232,15 +201,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="print-topbar-left">🛡️ <span id="print-title">Étiquettes</span></div>
     <div class="print-topbar-right">
       <button class="btn-back" onclick="retour()">← Modifier</button>
-      <button id="btn-mode" class="btn-mode" onclick="toggleMode()">✂ Découpe auto</button>
+      <button id="btn-mode" class="btn-mode" onclick="toggleMode()">🖨 Page par page</button>
       <button class="btn-print" onclick="window.print()">🖨 Imprimer</button>
     </div>
   </div>
   <div class="print-hint">
-    <strong>Brother QL-810WC — iPad :</strong> Ne pas sélectionner "Paysage" manuellement — la Brother QL gère ça seule via AirPrint.<br>
-    Si tu passes par <strong>Chrome</strong> : partage la page → Imprimer → sélectionne la Brother QL.<br>
-    <strong>Découpe :</strong> utilise le bouton <em>✂ Découpe auto / Bande continue</em> selon ton réglage d'imprimante.<br>
-    <strong>PDF sur iPad :</strong> dans la fenêtre d'impression Safari, fais un <strong>pincement vers l'extérieur</strong> sur l'aperçu.
+    <strong>Brother QL-810WC — iPad Safari :</strong> Imprimer → sélectionne la Brother QL → <strong>ne pas changer l'orientation</strong> — les étiquettes s'impriment en bande continue sans pages blanches.<br>
+    <strong>Page par page</strong> (bouton ci-dessus) : uniquement si tu imprimes sur du papier A4 classique.<br>
+    <strong>PDF sur iPad :</strong> dans Safari, fais un <strong>pincement vers l'extérieur</strong> sur l'aperçu d'impression.
   </div>
   <div class="etiq-grid" id="etiq-grid"></div>
 </div>
@@ -249,16 +217,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 var CAT=['Set OC','Sonde paro','Fraises','Set paro','Spatule','Seringue',
   'Excavateur','Curette','Davier','Elevateur','Syndesmotome',
   'Porte aiguille','Ciseaux','Set endo','Fouloir endo','Insert US'];
-
 (function(){
   document.getElementById('f-date').value=new Date().toISOString().slice(0,10);
   var wrap=document.getElementById('quick-btns');
-  CAT.forEach(function(n){
-    var b=document.createElement('button');
-    b.className='qb';b.textContent=n;
-    b.onclick=function(){addInstr(n);};
-    wrap.appendChild(b);
-  });
+  CAT.forEach(function(n){var b=document.createElement('button');b.className='qb';b.textContent=n;b.onclick=function(){addInstr(n);};wrap.appendChild(b);});
   var p=new URLSearchParams(window.location.search);
   var hasParams=false;
   if(p.get('num')){document.getElementById('f-num').value=p.get('num');hasParams=true;}
@@ -271,18 +233,13 @@ var CAT=['Set OC','Sonde paro','Fraises','Set paro','Spatule','Seringue',
   if(hasParams) document.getElementById('autofill-badge').style.display='inline-flex';
   calcDLU();
 })();
-
-function fmtDate(s){
-  if(!s) return '—';
-  return new Date(s+'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});
-}
+function fmtDate(s){if(!s) return '—';return new Date(s+'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});}
 function calcDLU(){
   var s=document.getElementById('f-date').value;
   var n=parseInt(document.getElementById('f-cond').value);
   var el=document.getElementById('f-dlu');
   if(!s){el.value='';return;}
-  var d=new Date(s+'T00:00:00');
-  d.setDate(d.getDate()+n);
+  var d=new Date(s+'T00:00:00');d.setDate(d.getDate()+n);
   el.value=d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});
 }
 function getDiff(){
@@ -306,14 +263,10 @@ function addInstr(val){
   list.appendChild(row);
   if(!val) inp.focus();
 }
-function renumInstrs(){
-  document.querySelectorAll('.instr-row').forEach(function(r,i){r.querySelector('.instr-index').textContent=i+1;});
-}
+function renumInstrs(){document.querySelectorAll('.instr-row').forEach(function(r,i){r.querySelector('.instr-index').textContent=i+1;});}
 function getInstrs(){
   var out=[];
-  document.querySelectorAll('#instr-list .instr-row input').forEach(function(inp,i){
-    var v=inp.value.trim();if(v) out.push({n:i+1,nom:v});
-  });
+  document.querySelectorAll('#instr-list .instr-row input').forEach(function(inp,i){var v=inp.value.trim();if(v) out.push({n:i+1,nom:v});});
   return out;
 }
 function generer(){
@@ -340,11 +293,7 @@ function generer(){
   var ce=document.createElement('div');
   ce.className='etiq-cycle';
   ce.innerHTML=
-    '<div class="ec-left">'+
-      '<div class="ec-num">'+num+'</div>'+
-      '<div class="ec-sublabel">Cycle stérilisation</div>'+
-      '<div class="ec-result '+tc(res)+'">'+(res==='ok'?'✓ Conforme':'✗ Défaut')+'</div>'+
-    '</div>'+
+    '<div class="ec-left"><div class="ec-num">'+num+'</div><div class="ec-sublabel">Cycle stérilisation</div><div class="ec-result '+tc(res)+'">'+(res==='ok'?'✓ Conforme':'✗ Défaut')+'</div></div>'+
     '<div class="ec-middle">'+
       '<div class="ec-row"><span class="ec-k">Date</span><span class="ec-v">'+dateStr+'</span></div>'+
       '<div class="ec-row"><span class="ec-k">Programme</span><span class="ec-v">'+progShort+'</span></div>'+
@@ -353,24 +302,20 @@ function generer(){
       '<div class="ec-row"><span class="ec-k">DLU</span><span class="ec-v">'+dlu+'</span></div>'+
       (instrs.length>0?'<div class="ec-row"><span class="ec-k">Sachets</span><span class="ec-v">'+instrs.length+'</span></div>':'')+
     '</div>'+
-    '<div class="ec-right">'+
-      '<div class="ec-tests">'+
-        '<span class="ec-test '+tc(prion)+'">'+tl(prion,'Prion')+'</span>'+
-        '<span class="ec-test '+tc(helix)+'">'+tl(helix,'Hélix')+'</span>'+
-        '<span class="ec-test '+tc(vacuum)+'">'+tl(vacuum,'Vacuum')+'</span>'+
-      '</div>'+
-    '</div>';
+    '<div class="ec-right"><div class="ec-tests">'+
+      '<span class="ec-test '+tc(prion)+'">'+tl(prion,'Prion')+'</span>'+
+      '<span class="ec-test '+tc(helix)+'">'+tl(helix,'Hélix')+'</span>'+
+      '<span class="ec-test '+tc(vacuum)+'">'+tl(vacuum,'Vacuum')+'</span>'+
+    '</div></div>';
   grid.appendChild(ce);
   if(instrs.length>0){
-    var sep=document.createElement('div');
-    sep.className='etiq-sep';
+    var sep=document.createElement('div');sep.className='etiq-sep';
     sep.innerHTML='<div class="sep-line"></div><span>'+instrs.length+' sachet'+(instrs.length>1?'s':'')+'</span><div class="sep-line"></div>';
     grid.appendChild(sep);
   }
   instrs.forEach(function(instr,idx){
     var lotNum=num+'-'+String(instr.n).padStart(2,'0');
-    var le=document.createElement('div');
-    le.className='etiq-lot';
+    var le=document.createElement('div');le.className='etiq-lot';
     le.innerHTML=
       '<div class="el-qr-wrap" id="qr-'+idx+'"></div>'+
       '<div class="el-info">'+
@@ -391,17 +336,7 @@ function generer(){
     if(_qi>=instrs.length) return;
     var i=_qi++;
     var el=document.getElementById('qr-'+i);
-    if(el){
-      el.innerHTML='';
-      try{
-        new QRCode(el,{
-          text:num+'-'+String(instrs[i].n).padStart(2,'0')+' | '+instrs[i].nom,
-          width:87,height:87,
-          colorDark:'#000000',colorLight:'#FFFFFF',
-          correctLevel:QRCode.CorrectLevel.M
-        });
-      }catch(e){console.warn('QR '+i,e);}
-    }
+    if(el){el.innerHTML='';try{new QRCode(el,{text:num+'-'+String(instrs[i].n).padStart(2,'0')+' | '+instrs[i].nom,width:87,height:87,colorDark:'#000000',colorLight:'#FFFFFF',correctLevel:QRCode.CorrectLevel.M});}catch(e){}}
     setTimeout(_qr,300);
   }
   setTimeout(_qr,500);
@@ -411,19 +346,12 @@ function retour(){
   document.getElementById('screen-print').style.display='none';
   window.scrollTo(0,0);
 }
-var _bandMode=false;
+var _pageMode=false;
 function toggleMode(){
-  _bandMode=!_bandMode;
+  _pageMode=!_pageMode;
   var btn=document.getElementById('btn-mode');
-  if(_bandMode){
-    document.body.classList.add('mode-bande');
-    btn.textContent='📄 Page par page';
-    btn.classList.add('active');
-  } else {
-    document.body.classList.remove('mode-bande');
-    btn.textContent='✂ Découpe auto';
-    btn.classList.remove('active');
-  }
+  if(_pageMode){document.body.classList.add('mode-pages');btn.textContent='📜 Bande continue';btn.classList.add('active');}
+  else{document.body.classList.remove('mode-pages');btn.textContent='🖨 Page par page';btn.classList.remove('active');}
 }
 </script>
 </body>
