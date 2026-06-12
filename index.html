@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stérilisation — Cabinet Dentaire</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rose:#C73D6B;--rose-d:#9E2A4F;--rose-l:#FEF0F4;--rose-m:#F2BACE;
+  --mauve:#7B3399;--mauve-l:#F5EEFA;--mauve-m:#CEAAE8;
+  --green:#1A6640;--green-l:#E8F5EE;
+  --amber:#7A4400;--amber-l:#FDF0DC;
+  --red:#991A1A;--red-l:#FEE8E8;
+  --text:#1A0A10;--text-m:#6B3A50;--text-l:#B08090;
+  --border:#EEC8D8;--bg:#FBF6F8;--white:#FFFFFF;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:28px 20px 60px}
+
+/* ── FORMULAIRE ── */
+.form-title{font-size:18px;font-weight:600;color:var(--rose-d);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.form-subtitle{font-size:12px;color:var(--text-l);margin-bottom:24px}
+.autofill-badge{display:inline-flex;align-items:center;gap:5px;background:var(--green-l);color:var(--green);font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;margin-bottom:16px}
+.section-label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-l);margin:20px 0 10px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:10px;font-weight:500;color:var(--text-m);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.field input,.field select{width:100%;background:var(--white);border:1.5px solid var(--border);border-radius:9px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);transition:border-color .15s;-webkit-appearance:none}
+.field input:focus,.field select:focus{outline:none;border-color:var(--rose)}
+.field input[readonly]{background:var(--rose-l);color:var(--rose-d);font-weight:500;cursor:default}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tests-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.test-field label{display:block;font-size:10px;font-weight:500;color:var(--text-m);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.test-field select{width:100%;background:var(--white);border:1.5px solid var(--border);border-radius:9px;padding:9px 8px;font-size:11px;font-family:'DM Sans',sans-serif;color:var(--text);-webkit-appearance:none;transition:all .15s}
+.sel-ok{background:#E8F5EE!important;border-color:#6DB88A!important;color:#1A6640!important}
+.sel-nok{background:#FEE8E8!important;border-color:#E88A8A!important;color:#991A1A!important}
+.sel-na{background:#f8f4f6!important;color:var(--text-l)!important}
+.quick-wrap{background:var(--mauve-l);border:1px solid var(--mauve-m);border-radius:10px;padding:12px;margin-bottom:14px}
+.quick-title{font-size:10px;font-weight:600;color:var(--mauve);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.quick-btns{display:flex;flex-wrap:wrap;gap:5px}
+.qb{font-size:12px;padding:4px 11px;border-radius:20px;border:1px solid var(--mauve-m);background:var(--white);color:var(--mauve);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap}
+.qb:hover{background:var(--mauve);color:var(--white)}
+.instr-list{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.instr-row{display:flex;align-items:center;gap:8px}
+.instr-index{font-size:11px;font-weight:600;color:var(--text-l);width:20px;text-align:right;flex-shrink:0}
+.instr-row input{flex:1;background:var(--white);border:1.5px solid var(--border);border-radius:9px;padding:10px 13px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text)}
+.instr-row input:focus{outline:none;border-color:var(--mauve)}
+.btn-del{background:none;border:none;color:var(--border);cursor:pointer;font-size:22px;line-height:1;padding:2px 4px;transition:color .15s;flex-shrink:0}
+.btn-del:hover{color:var(--rose)}
+.btn-add-instr{width:100%;background:transparent;border:1.5px dashed var(--mauve-m);border-radius:9px;padding:9px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--mauve);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s;margin-bottom:28px}
+.btn-add-instr:hover{background:var(--mauve-l)}
+.btn-go{width:100%;max-width:460px;background:var(--rose);color:var(--white);border:none;border-radius:11px;padding:16px;font-size:16px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s}
+.btn-go:hover{opacity:.9}
+
+/* ── ÉCRAN IMPRESSION ── */
+#screen-print{display:none;min-height:100vh;background:var(--bg)}
+.print-topbar{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
+.print-topbar-left{font-size:14px;font-weight:500;color:var(--rose-d)}
+.print-topbar-right{display:flex;gap:10px}
+.btn-back{background:var(--white);color:var(--text-m);border:1.5px solid var(--border);border-radius:9px;padding:9px 16px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer}
+.btn-print{background:var(--rose);color:var(--white);border:none;border-radius:9px;padding:9px 20px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer}
+.print-hint{background:var(--rose-l);border:1px solid var(--rose-m);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--rose-d);margin:16px 24px;line-height:1.6}
+
+/* Aperçu écran — étiquettes les unes sous les autres */
+.etiq-grid{display:flex;flex-direction:column;align-items:flex-start;padding:20px 24px 40px;gap:8px}
+.etiq-sep{display:flex;align-items:center;gap:8px;color:var(--text-l);font-size:11px;margin:2px 0;width:100%}
+.sep-line{flex:1;height:.5px;background:var(--border)}
+
+/* ══════════════════════════════════════════════
+   ÉTIQUETTES — PAYSAGE, 29mm de haut
+   Largeur automatique selon le contenu
+   Brother QL-820NWBc + DK-22210
+══════════════════════════════════════════════ */
+
+/* ÉTIQUETTE CYCLE — paysage, toutes infos */
+.etiq-cycle{
+  height:29mm;
+  width:90mm;
+  min-width:90mm;
+  background:white;
+  border:.8px solid #ccc;
+  border-radius:2px;
+  font-family:'DM Sans',sans-serif;
+  display:flex;
+  align-items:stretch;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.ec-left{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:2mm 3mm 2mm 3mm;
+  border-right:.5px solid #eee;
+  min-width:18mm;
+}
+.ec-num{font-size:12pt;font-weight:700;color:var(--rose-d);line-height:1;letter-spacing:.3px}
+.ec-sublabel{font-size:5.5pt;color:var(--text-l);text-transform:uppercase;letter-spacing:.5px;margin-top:.5mm;margin-bottom:2mm}
+.ec-result{font-size:7pt;font-weight:700;padding:2px 6px;border-radius:3px;display:inline-block}
+.ec-result.ok{background:var(--green-l);color:var(--green)}
+.ec-result.nok{background:var(--red-l);color:var(--red)}
+.ec-middle{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:2mm 3mm;
+  gap:.6mm;
+  border-right:.5px solid #eee;
+}
+.ec-row{display:flex;gap:2mm;align-items:baseline;font-size:6.5pt;white-space:nowrap}
+.ec-k{color:var(--text-l);flex-shrink:0}
+.ec-v{font-weight:600;color:var(--text)}
+.ec-right{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:2mm 3mm;
+  gap:1.5mm;
+}
+.ec-tests{display:flex;flex-direction:column;gap:1mm}
+.ec-test{font-size:6pt;font-weight:600;padding:1px 5px;border-radius:2px;white-space:nowrap}
+.ec-test.ok{background:var(--green-l);color:var(--green)}
+.ec-test.nok{background:var(--red-l);color:var(--red)}
+.ec-test.na{background:#f5f2f4;color:var(--text-l)}
+
+/* ÉTIQUETTE LOT — paysage, QR à gauche, infos à droite */
+.etiq-lot{
+  height:29mm;
+  width:90mm;
+  min-width:90mm;
+  background:white;
+  border:.8px solid #ccc;
+  border-radius:2px;
+  font-family:'DM Sans',sans-serif;
+  display:flex;
+  align-items:stretch;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.el-qr-wrap{
+  flex-shrink:0;
+  width:25mm;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2mm;
+  border-right:.5px solid #eee;
+}
+.el-qr-wrap canvas,
+.el-qr-wrap img{
+  width:23mm !important;
+  height:23mm !important;
+  display:block;
+}
+.el-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:2mm 3mm;
+  gap:1.2mm;
+  min-width:0;
+}
+.el-lot{font-size:6.5pt;font-weight:700;color:var(--rose-d);line-height:1;letter-spacing:.3px}
+.el-instr{font-size:10pt;font-weight:700;color:var(--text);line-height:1.2;white-space:nowrap}
+.el-line{font-size:6pt;color:var(--text-l);line-height:1.3;white-space:nowrap}
+.el-dlu{font-size:7pt;font-weight:700;padding:1.5px 5px;border-radius:2px;display:inline-block}
+.dlu-ok{background:var(--green-l);color:var(--green)}
+.dlu-warn{background:var(--amber-l);color:var(--amber)}
+.dlu-exp{background:var(--red-l);color:var(--red)}
+
+/* ══════════════════════════════════════════════
+   IMPRESSION — Brother QL-820NWBc + DK-22210
+   Papier continu 29mm, paysage
+   Une étiquette par "page" (coupe auto ou manuelle)
+══════════════════════════════════════════════ */
+@media print{
+  @page{
+    size: 90mm 29mm;
+    margin: 0;
+  }
+
+  html,body{width:90mm;margin:0;padding:0;background:white}
+
+  #screen-form,.print-topbar,.print-hint,.etiq-sep{display:none!important}
+  #screen-print{display:block!important}
+
+  .etiq-grid{width:90mm;margin:0;padding:0;display:block}
+
+  .etiq-cycle,.etiq-lot{
+    display:block;
+    width:90mm !important;
+    height:29mm !important;
+    max-height:29mm !important;
+    margin:0 !important;
+    border:none !important;
+    border-radius:0 !important;
+    overflow:hidden !important;
+    page-break-before:always;
+    break-before:page;
+    page-break-inside:avoid;
+    break-inside:avoid;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  .etiq-cycle:first-child,.etiq-lot:first-child{
+    page-break-before:avoid;
+    break-before:avoid;
+  }
+
+  .ec-result,.ec-test,.el-dlu{
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- FORMULAIRE -->
+<div id="screen-form" style="max-width:480px;margin:0 auto">
+  <div class="form-title">🛡️ Étiquettes stérilisation</div>
+  <div class="form-subtitle">Données pré-remplies depuis Notion, ou remplis manuellement.</div>
+  <div id="autofill-badge" style="display:none" class="autofill-badge">✓ Données pré-remplies depuis Notion</div>
+
+  <div class="section-label">Cycle autoclave</div>
+  <div class="field-row">
+    <div class="field"><label>N° de cycle</label><input type="text" id="f-num" placeholder="0001"></div>
+    <div class="field"><label>Date</label><input type="date" id="f-date" onchange="calcDLU()"></div>
+  </div>
+  <div class="field">
+    <label>Programme autoclave</label>
+    <select id="f-prog">
+      <option>134°C — 18 min (Prion)</option>
+      <option>134°C — 3,5 min</option>
+      <option>121°C — 15 min</option>
+    </select>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Conditionnement</label>
+      <select id="f-cond" onchange="calcDLU()">
+        <option value="180">Sachet scellé — 6 mois</option>
+        <option value="90">Sachet simple — 3 mois</option>
+        <option value="365">Conteneur — 12 mois</option>
+        <option value="7">Non conditionné — 7 j</option>
+      </select>
+    </div>
+    <div class="field"><label>DLU (auto)</label><input type="text" id="f-dlu" readonly placeholder="—"></div>
+  </div>
+  <div class="field">
+    <label>Opérateur</label>
+    <select id="f-op">
+      <option value="O. Tourrel">Océane Tourrel</option>
+      <option value="Dr E. Charpentier">Dr Eva Charpentier</option>
+    </select>
+  </div>
+
+  <div class="section-label">Tests du jour</div>
+  <div class="tests-grid">
+    <div class="test-field"><label>Test Prion</label>
+      <select id="f-prion" onchange="colorSel(this)">
+        <option value="ok">✓ Conforme</option>
+        <option value="nok">✗ Non conforme</option>
+        <option value="na" selected>— N/R</option>
+      </select>
+    </div>
+    <div class="test-field"><label>Test Hélix</label>
+      <select id="f-helix" onchange="colorSel(this)">
+        <option value="ok">✓ Conforme</option>
+        <option value="nok">✗ Non conforme</option>
+        <option value="na" selected>— N/R</option>
+      </select>
+    </div>
+    <div class="test-field"><label>Test Vacuum</label>
+      <select id="f-vacuum" onchange="colorSel(this)">
+        <option value="ok">✓ Conforme</option>
+        <option value="nok">✗ Non conforme</option>
+        <option value="na" selected>— N/R</option>
+      </select>
+    </div>
+    <div class="test-field"><label>Résultat</label>
+      <select id="f-res" onchange="colorSel(this)">
+        <option value="ok">✓ Conforme</option>
+        <option value="nok">✗ Défaut</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="section-label">Instruments — 1 ligne = 1 sachet</div>
+  <div class="quick-wrap">
+    <div class="quick-title">Ajout rapide</div>
+    <div class="quick-btns" id="quick-btns"></div>
+  </div>
+  <div class="instr-list" id="instr-list"></div>
+  <button class="btn-add-instr" onclick="addInstr('')">+ Ajouter un instrument</button>
+  <button class="btn-go" onclick="generer()">Générer les étiquettes →</button>
+</div>
+
+<!-- IMPRESSION -->
+<div id="screen-print">
+  <div class="print-topbar">
+    <div class="print-topbar-left">🛡️ <span id="print-title">Étiquettes</span></div>
+    <div class="print-topbar-right">
+      <button class="btn-back" onclick="retour()">← Modifier</button>
+      <button class="btn-print" onclick="window.print()">🖨 Imprimer / PDF</button>
+    </div>
+  </div>
+  <div class="print-hint">
+    <strong>Brother QL-820NWBc + DK-22210.</strong> Clique "Imprimer" → choisis la Brother → le format 29mm est détecté automatiquement. Pour PDF : choisis "Enregistrer en PDF". Coche <strong>"Imprimer l'arrière-plan"</strong> dans Safari.
+  </div>
+  <div class="etiq-grid" id="etiq-grid"></div>
+</div>
+
+<script>
+var CAT=['Set OC','Sonde paro','Fraises','Set paro','Spatule','Seringue',
+  'Excavateur','Curette','Davier','Elevateur','Syndesmotome',
+  'Porte aiguille','Ciseaux','Set endo','Fouloir endo','Insert US'];
+
+(function(){
+  document.getElementById('f-date').value=new Date().toISOString().slice(0,10);
+  var wrap=document.getElementById('quick-btns');
+  CAT.forEach(function(n){
+    var b=document.createElement('button');
+    b.className='qb';b.textContent=n;
+    b.onclick=function(){addInstr(n);};
+    wrap.appendChild(b);
+  });
+
+  var p=new URLSearchParams(window.location.search);
+  var hasParams=false;
+  if(p.get('num')){document.getElementById('f-num').value=p.get('num');hasParams=true;}
+  if(p.get('date')){document.getElementById('f-date').value=p.get('date');hasParams=true;}
+  if(p.get('prion')){var e=document.getElementById('f-prion');e.value=p.get('prion');colorSel(e);}
+  if(p.get('helix')){var e=document.getElementById('f-helix');e.value=p.get('helix');colorSel(e);}
+  if(p.get('vacuum')){var e=document.getElementById('f-vacuum');e.value=p.get('vacuum');colorSel(e);}
+  if(p.get('res')){var e=document.getElementById('f-res');e.value=p.get('res');colorSel(e);}
+  ['f-prion','f-helix','f-vacuum','f-res'].forEach(function(id){colorSel(document.getElementById(id));});
+  if(hasParams) document.getElementById('autofill-badge').style.display='inline-flex';
+  calcDLU();
+})();
+
+function fmtDate(s){
+  if(!s) return '—';
+  return new Date(s+'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+function calcDLU(){
+  var s=document.getElementById('f-date').value;
+  var n=parseInt(document.getElementById('f-cond').value);
+  var el=document.getElementById('f-dlu');
+  if(!s){el.value='';return;}
+  var d=new Date(s+'T00:00:00');
+  d.setDate(d.getDate()+n);
+  el.value=d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+function getDiff(){
+  var v=document.getElementById('f-dlu').value;
+  if(!v) return 999;
+  var p=v.split('/');if(p.length!==3) return 999;
+  return Math.round((new Date(p[2]+'-'+p[1]+'-'+p[0])-new Date())/86400000);
+}
+function colorSel(sel){
+  sel.classList.remove('sel-ok','sel-nok','sel-na');
+  sel.classList.add(sel.value==='ok'?'sel-ok':sel.value==='nok'?'sel-nok':'sel-na');
+}
+function addInstr(val){
+  var list=document.getElementById('instr-list');
+  var row=document.createElement('div');row.className='instr-row';
+  var idx=document.createElement('span');idx.className='instr-index';idx.textContent=list.children.length+1;
+  var inp=document.createElement('input');inp.type='text';inp.placeholder='Nom de l\'instrument';inp.value=val||'';inp.oninput=renumInstrs;
+  var del=document.createElement('button');del.className='btn-del';del.innerHTML='&times;';
+  del.onclick=function(){row.remove();renumInstrs();};
+  row.appendChild(idx);row.appendChild(inp);row.appendChild(del);
+  list.appendChild(row);
+  if(!val) inp.focus();
+}
+function renumInstrs(){
+  document.querySelectorAll('.instr-row').forEach(function(r,i){r.querySelector('.instr-index').textContent=i+1;});
+}
+function getInstrs(){
+  var out=[];
+  document.querySelectorAll('#instr-list .instr-row input').forEach(function(inp,i){
+    var v=inp.value.trim();if(v) out.push({n:i+1,nom:v});
+  });
+  return out;
+}
+
+function generer(){
+  var num    =document.getElementById('f-num').value.trim()||'?';
+  var date   =document.getElementById('f-date').value;
+  var prog   =document.getElementById('f-prog').value;
+  var dlu    =document.getElementById('f-dlu').value||'—';
+  var op     =document.getElementById('f-op').options[document.getElementById('f-op').selectedIndex].value;
+  var cond   =document.getElementById('f-cond').options[document.getElementById('f-cond').selectedIndex].text.split('—')[0].trim();
+  var prion  =document.getElementById('f-prion').value;
+  var helix  =document.getElementById('f-helix').value;
+  var vacuum =document.getElementById('f-vacuum').value;
+  var res    =document.getElementById('f-res').value;
+  var diff   =getDiff();
+  var instrs =getInstrs();
+
+  var dateStr  =fmtDate(date);
+  var progShort=prog.split('(')[0].trim();
+  var dluClass =diff>30?'dlu-ok':diff>0?'dlu-warn':'dlu-exp';
+  var dluLabel =(diff>30?'✓ DLU ':diff>0?'⚠ DLU ':'✗ DLU ')+dlu;
+
+  var grid=document.getElementById('etiq-grid');
+  grid.innerHTML='';
+
+  function tc(v){return v==='ok'?'ok':v==='nok'?'nok':'na';}
+  function tl(v,n){return v==='ok'?'✓ '+n:v==='nok'?'✗ '+n:'— '+n;}
+
+  /* ── ÉTIQUETTE CYCLE (paysage, pas de QR) ── */
+  var ce=document.createElement('div');
+  ce.className='etiq-cycle';
+  ce.innerHTML=
+    '<div class="ec-left">'+
+      '<div class="ec-num">'+num+'</div>'+
+      '<div class="ec-sublabel">Cycle stérilisation</div>'+
+      '<div class="ec-result '+tc(res)+'">'+(res==='ok'?'✓ Conforme':'✗ Défaut')+'</div>'+
+    '</div>'+
+    '<div class="ec-middle">'+
+      '<div class="ec-row"><span class="ec-k">Date</span><span class="ec-v">'+dateStr+'</span></div>'+
+      '<div class="ec-row"><span class="ec-k">Programme</span><span class="ec-v">'+progShort+'</span></div>'+
+      '<div class="ec-row"><span class="ec-k">Opérateur</span><span class="ec-v">'+op+'</span></div>'+
+      '<div class="ec-row"><span class="ec-k">Cond.</span><span class="ec-v">'+cond+'</span></div>'+
+      '<div class="ec-row"><span class="ec-k">DLU</span><span class="ec-v">'+dlu+'</span></div>'+
+      (instrs.length>0?'<div class="ec-row"><span class="ec-k">Sachets</span><span class="ec-v">'+instrs.length+'</span></div>':'')+
+    '</div>'+
+    '<div class="ec-right">'+
+      '<div class="ec-tests">'+
+        '<span class="ec-test '+tc(prion)+'">'+tl(prion,'Prion')+'</span>'+
+        '<span class="ec-test '+tc(helix)+'">'+tl(helix,'Hélix')+'</span>'+
+        '<span class="ec-test '+tc(vacuum)+'">'+tl(vacuum,'Vacuum')+'</span>'+
+      '</div>'+
+    '</div>';
+  grid.appendChild(ce);
+
+  /* Séparateur */
+  if(instrs.length>0){
+    var sep=document.createElement('div');
+    sep.className='etiq-sep';
+    sep.innerHTML='<div class="sep-line"></div><span>'+instrs.length+' sachet'+(instrs.length>1?'s':'')+'</span><div class="sep-line"></div>';
+    grid.appendChild(sep);
+  }
+
+  /* ── ÉTIQUETTES LOTS (paysage, QR gauche, infos droite) ── */
+  instrs.forEach(function(instr,idx){
+    var lotNum=num+'-'+String(instr.n).padStart(2,'0');
+    var le=document.createElement('div');
+    le.className='etiq-lot';
+    le.innerHTML=
+      '<div class="el-qr-wrap" id="qr-'+idx+'"></div>'+
+      '<div class="el-info">'+
+        '<div class="el-lot">'+lotNum+'</div>'+
+        '<div class="el-instr">'+instr.nom+'</div>'+
+        '<div class="el-line">'+dateStr+' · '+progShort+'</div>'+
+        '<div class="el-line">'+op+'</div>'+
+        '<div class="el-dlu '+dluClass+'">'+dluLabel+'</div>'+
+      '</div>';
+    grid.appendChild(le);
+  });
+
+  document.getElementById('print-title').textContent=
+    num+(instrs.length>0?' — '+instrs.length+' sachet'+(instrs.length>1?'s':''):'');
+  document.getElementById('screen-form').style.display='none';
+  document.getElementById('screen-print').style.display='block';
+  window.scrollTo(0,0);
+
+  /* QR en séquence stricte — 1 par 1 */
+  var _qi=0;
+  function _qr(){
+    if(_qi>=instrs.length) return;
+    var i=_qi++;
+    var el=document.getElementById('qr-'+i);
+    if(el){
+      el.innerHTML='';
+      try{
+        new QRCode(el,{
+          text:num+'-'+String(instrs[i].n).padStart(2,'0')+' | '+instrs[i].nom,
+          width:87,height:87,
+          colorDark:'#1A0A10',colorLight:'#FFFFFF',
+          correctLevel:QRCode.CorrectLevel.M
+        });
+      }catch(e){console.warn('QR '+i,e);}
+    }
+    setTimeout(_qr,300);
+  }
+  setTimeout(_qr,500);
+}
+
+function retour(){
+  document.getElementById('screen-form').style.display='block';
+  document.getElementById('screen-print').style.display='none';
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
